@@ -9,14 +9,14 @@
 ##    get the value of the inverse (getinverse)
 
 makeCacheMatrix <- function(x = matrix()) {
-	i <- NULL					## Initially set the inverse to null
-	set <- function(y) {		## Create the matrix
+	i <- NULL                                           ## Initially set the inverse to null
+	set <- function(y) {                                ## Create the matrix
 		x <<- y
 		i <<- NULL
 	}
-	get <-function() x			## Return the matrix
-	setinverse <- function(inverse) i <<- inverse		## set the inverse
-	getinverse <- function() i							## return the inverse
+	get <-function() x                                  ## Return the matrix
+	setinverse <- function(inverse) i <<- inverse       ## set the inverse
+	getinverse <- function() i                          ## return the inverse
 	list(set = set, get = get,
 		setinverse = setinverse,
 		getinverse = getinverse)
@@ -30,13 +30,13 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x) {
     ## Return a matrix that is the inverse of 'x'
-	i <- x$getinverse()						## get the inverse from cache, if any
-	if(!is.null(i)) {						## if there is value in the cache
-		message("getting chached data")		## inform that we're using the cached value of the inverse, and
-		return(i)							## return what is in the cache
+	i <- x$getinverse()                     ## get the inverse from cache, if any
+	if(!is.null(i)) {                       ## if there is value in the cache
+		message("getting chached data")     ## inform that we're using the cached value of the inverse, and
+		return(i)                           ## return what is in the cache
 	}
-	data <- x$get()							## otherwise, compute for the inverse
+	data <- x$get()                         ## otherwise, compute for the inverse
 	i <- solve(data)
-	x$setinverse(i)							## store the computed inverse into the cache, then
-	i										## return the computed inverse
+	x$setinverse(i)                         ## store the computed inverse into the cache, then
+	i                                       ## return the computed inverse
 }
